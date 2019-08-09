@@ -7,20 +7,24 @@ SNTest is based in medieval times:
 	No eletronic machines
 	No modern equipment
 	Primitive and magical items
+	
 SNTest is PvP encouraged:
 	Weapons ment for PvP
 	PvP is optional but encouraged
 	Traps and equipment for PvP
+	
 SNTest is RPG:
 	-Hostile mobs and bosses
 	-Aceint/Legendary items
 	-Guilds
+	
 SNTest NPCs:
 	-NPC villages and villagers
 	-NPC travelers
-  -NPC trading
+	-NPC trading
+	
  SNTst is fantasy based
-  -Magic
-  -Races
+  	-Magic
+  	-Races
 ........................................................................
 ========================================================================
