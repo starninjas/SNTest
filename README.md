@@ -18,5 +18,9 @@ SNTest is RPG:
 SNTest NPCs:
 	-NPC villages and villagers
 	-NPC travelers
+  -NPC trading
+ SNTst is fantasy based
+  -Magic
+  -Races
 ........................................................................
 ========================================================================
