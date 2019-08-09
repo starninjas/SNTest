@@ -1,4 +1,4 @@
-function ma_pops_furniture.sit(pos, node, clicker, pointed_thing)
+function sn_furniture.sit(pos, node, clicker, pointed_thing)
 	if not top_face(pointed_thing) then return end
 	local player_name = clicker:get_player_name()
 	local objs = minetest.get_objects_inside_radius(pos, 0.1)
@@ -35,7 +35,7 @@ function ma_pops_furniture.sit(pos, node, clicker, pointed_thing)
 	end
 end
 
-function ma_pops_furniture.sit_dig(pos, digger)
+function sn_furniture.sit_dig(pos, digger)
 	for _, player in pairs(minetest.get_objects_inside_radius(pos, 0.1)) do
 		if player:is_player() and
 			    default.player_attached[player:get_player_name()] then
@@ -45,7 +45,7 @@ function ma_pops_furniture.sit_dig(pos, digger)
 	return true
 end
 
-ma_pops_furniture.window_operate = function( pos, old_node_state_name, new_node_state_name )
+sn_furniture.window_operate = function( pos, old_node_state_name, new_node_state_name )
    
    local offsets   = {-1,1,-2,2,-3,3};
    local stop_up   = 0;
