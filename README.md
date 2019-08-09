@@ -36,7 +36,7 @@ SNTest NPCs:
 	
 	-NPC trading
 	
- SNTst is fantasy based"
+ SNTest is fantasy based"
  
   	-Magic
 	
