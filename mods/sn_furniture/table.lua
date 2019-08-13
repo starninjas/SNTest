@@ -1,10 +1,6 @@
 local table_table = { --name, material, invimg
 {'Stone Table', 'cobble', 'mp_table_stone.png'},
-{'Wood Table', 'wood', 'mp_table_wood.png'},
-{'Acacia Wood Table', 'acacia_wood', 'mp_table_wood_acacia.png'},
-{'Aspen Wood Table', 'aspen_wood', 'mp_table_wood_aspen.png'},
-{'Pine Wood Table', 'pine_wood', 'mp_table_wood_pine.png'},
-{'Jungle Wood Table', 'junglewood', 'mp_table_wood_jungle.png'}
+{'Wood Table', 'wood', 'mp_table_wood.png'}
 }
 
 for i in ipairs (table_table) do
