@@ -1,10 +1,6 @@
 local chair_table = { --name, material, invimg
 {'Stone Chair', 'cobble', 'mp_chair_stone.png'},
-{'Wood Chair', 'wood', 'mp_chair_wood.png'},
-{'Acacia Wood Chair', 'acacia_wood', 'mp_chair_acacia_wood.png'},
-{'Aspen Wood Chair', 'aspen_wood', 'mp_chair_aspen_wood.png'},
-{'Pine Wood Chair', 'pine_wood', 'mp_chair_pine_wood.png'},
-{'Jungle Wood Chair', 'junglewood', 'mp_chair_junglewood.png'}
+{'Wood Chair', 'wood', 'mp_chair_wood.png'}
 }
 
 for i in ipairs (chair_table) do
