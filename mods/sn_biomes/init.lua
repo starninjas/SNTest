@@ -94,22 +94,7 @@ function default.register_biomes(upper_limit)
 		heat_point = 0,
 		humidity_point = 40,
 	})
-
-	minetest.register_biome({
-		name = "tundra",
-		node_top = "default:permafrost_with_stones",
-		depth_top = 1,
-		node_filler = "default:permafrost",
-		depth_filler = 1,
-		node_riverbed = "default:gravel",
-		depth_riverbed = 2,
-		vertical_blend = 4,
-		y_max = 46,
-		y_min = 2,
-		heat_point = 0,
-		humidity_point = 40,
-	})
-
+	
 	minetest.register_biome({
 		name = "tundra_beach",
 		node_top = "default:gravel",
