@@ -292,8 +292,8 @@ function default.register_biomes(upper_limit)
 		node_riverbed = "default:sand",
 		depth_riverbed = 2,
 		y_max = upper_limit,
-		y_min = 1,
-		heat_point = 60,
+		y_min = 10,
+		heat_point = 30,
 		humidity_point = 68,
 	})
 
@@ -325,7 +325,23 @@ function default.register_biomes(upper_limit)
 		heat_point = 60,
 		humidity_point = 68,
 	})
-
+	
+	-- Stone Biome
+	
+	minetest.register_biome({
+		name = "stoneland",
+		node_top = "default:gravel",
+		depth_top = 3,
+		node_filler = "default:stone",
+		depth_filler = 1,
+		node_riverbed = "default:gravel",
+		depth_riverbed = 2,
+		y_max = upper_limit,
+		y_min = 6,
+		heat_point = 3,
+		humidity_point = 60,
+	})
+	
 	-- Desert
 
 	minetest.register_biome({
