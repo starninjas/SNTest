@@ -329,37 +329,6 @@ function default.register_biomes(upper_limit)
 		humidity_point = 68,
 	})
 	
-	--Aspen Forest
-	
-	minetest.register_biome({
-		name = "aspenforest",
-		node_top = "default:dirt_with_grass",
-		depth_top = 1,
-		node_filler = "default:dirt",
-		depth_filler = 3,
-		node_riverbed = "default:sand",
-		depth_riverbed = 2,
-		y_max = upper_limit,
-		y_min = 12,
-		heat_point = 35,
-		humidity_point = 68,
-	})
-	
-	minetest.register_biome({
-		name = "aspen_forest_ocean",
-		node_top = "default:sand",
-		depth_top = 1,
-		node_filler = "default:sand",
-		depth_filler = 3,
-		node_riverbed = "default:sand",
-		depth_riverbed = 2,
-		vertical_blend = 1,
-		y_max = -2,
-		y_min = -112,
-		heat_point = 50,
-		humidity_point = 68,
-	})
-	
 	-- Stone Biome
 	
 	minetest.register_biome({
@@ -1023,46 +992,6 @@ function default.register_decorations()
 	})
 
 	minetest.register_decoration({
-		name = "default:aspen_tree_tall",
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.0,
-			scale = -0.015,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"aspen_forest"},
-		y_max = 31000,
-		y_min = 1,
-		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/aspen_tree_tall.mts",
-		flags = "place_center_x, place_center_z",
-	})
-
-	minetest.register_decoration({
-		name = "default:aspen_tree2",
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.024,
-			scale = 0.015,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"aspen_forest"},
-		y_max = 31000,
-		y_min = 1,
-		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/aspen_tree.mts",
-		flags = "place_center_x, place_center_z",
-	})
-	
-	minetest.register_decoration({
 		name = "default:aspen_log",
 		deco_type = "schematic",
 		place_on = {"default:dirt_with_grass"},
@@ -1077,30 +1006,6 @@ function default.register_decorations()
 			persist = 0.66
 		},
 		biomes = {"deciduous_forest"},
-		y_max = 31000,
-		y_min = 1,
-		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/aspen_log.mts",
-		flags = "place_center_x",
-		rotation = "random",
-		spawn_by = "default:dirt_with_grass",
-		num_spawn_by = 8,
-	})
-
-	minetest.register_decoration({
-		name = "default:aspen_log2",
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		place_offset_y = 1,
-		sidelen = 16,
-		noise_params = {
-			offset = 0.0,
-			scale = -0.0008,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"aspen_forest"},
 		y_max = 31000,
 		y_min = 1,
 		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/aspen_log.mts",
