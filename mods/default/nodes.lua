@@ -53,10 +53,6 @@ default:dirt_with_snow
 default:dirt_with_rainforest_litter
 default:dirt_with_coniferous_litter
 
-default:permafrost
-default:permafrost_with_stones
-default:permafrost_with_moss
-
 default:sand
 default:desert_sand
 default:silver_sand
@@ -503,26 +499,6 @@ minetest.register_node("default:permafrost", {
 	tiles = {"default_permafrost.png"},
 	groups = {cracky = 3},
 	sounds = default.node_sound_dirt_defaults(),
-})
-
-minetest.register_node("default:permafrost_with_stones", {
-	description = "Permafrost with Stones",
-	tiles = {"default_permafrost.png^default_stones.png",
-		"default_permafrost.png",
-		"default_permafrost.png^default_stones_side.png"},
-	groups = {cracky = 3},
-	sounds = default.node_sound_gravel_defaults(),
-})
-
-minetest.register_node("default:permafrost_with_moss", {
-	description = "Permafrost with Moss",
-	tiles = {"default_moss.png", "default_permafrost.png",
-		{name = "default_permafrost.png^default_moss_side.png",
-			tileable_vertical = false}},
-	groups = {cracky = 3},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_grass_footstep", gain = 0.25},
-	}),
 })
 
 minetest.register_node("default:sand", {
