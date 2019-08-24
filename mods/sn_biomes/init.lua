@@ -4,6 +4,7 @@
 
 minetest.register_alias("mapgen_stone", "default:stone")
 minetest.register_alias("mapgen_dirt", "default:dirt")
+minetest.register_alias("mapgen_desert_gravel", "sn_biomes:desert_gravel")
 minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
 minetest.register_alias("mapgen_sand", "default:sand")
 minetest.register_alias("mapgen_water_source", "default:water_source")
@@ -37,9 +38,30 @@ minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
 minetest.register_alias("mapgen_stair_desert_stone", "stairs:stair_desert_stone")
 minetest.register_alias("mapgen_sandstonebrick", "default:sandstonebrick")
 minetest.register_alias("mapgen_stair_sandstone_block", "stairs:stair_sandstone_block")
+	
 --
 -- Blocks
 --
+
+minetest.register_node("sn_biomes:dirt_with_dry_grass", {
+	description = "Dirt with Dry Grass",
+	tiles = {"sn_dry_grass.png",
+		"default_dirt.png",
+		{name = "default_dirt.png^sn_dry_grass_side.png",
+			tileable_vertical = false}},
+	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name = "default_grass_footstep", gain = 0.4},
+	}),
+})
+
+minetest.register_node("sn_biomes:desert_gravel", {
+	description = "Desert Gravel",
+	tiles = {"sn_desert_gravel.png"},
+	groups = {crumbly = 2, falling_node = 1},
+	sounds = default.node_sound_gravel_defaults(),
+})
 
 --
 -- Register biomes
@@ -238,7 +260,7 @@ function default.register_biomes(upper_limit)
 		heat_point = 50,
 		humidity_point = 35,
 	})
-
+	
 	-- Coniferous forest
 
 	minetest.register_biome({
@@ -329,18 +351,18 @@ function default.register_biomes(upper_limit)
 		humidity_point = 68,
 	})
 	
-	-- Stone Biome
+	-- Extreme Hills
 	
 	minetest.register_biome({
-		name = "stoneland",
+		name = "extreme_hills",
 		node_top = "default:gravel",
 		depth_top = 3,
 		node_filler = "default:stone",
 		depth_filler = 1,
 		node_riverbed = "default:gravel",
 		depth_riverbed = 2,
-		y_max = upper_limit,
-		y_min = 6,
+		y_max = 500,
+		y_min = 30,
 		heat_point = 3,
 		humidity_point = 60,
 	})
@@ -376,6 +398,54 @@ function default.register_biomes(upper_limit)
 		y_min = -112,
 		heat_point = 92,
 		humidity_point = 16,
+	})
+	
+	-- Rocky Desert
+
+	minetest.register_biome({
+		name = "rocky_desert",
+		node_top = "sn_biomes:desert_gravel",
+		depth_top = 1,
+		node_filler = "sn_biomes:desert_gravel",
+		depth_filler = 1,
+		node_stone = "default:desert_stone",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = upper_limit,
+		y_min = 5,
+		heat_point = 90,
+		humidity_point = 16,
+	})
+
+	minetest.register_biome({
+		name = "rocky_ocean",
+		node_top = "default:sand",
+		depth_top = 1,
+		node_filler = "default:sand",
+		depth_filler = 3,
+		node_stone = "default:desert_stone",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		vertical_blend = 1,
+		y_max = 3,
+		y_min = -112,
+		heat_point = 90,
+		humidity_point = 18,
+	})
+	
+	minetest.register_biome({
+		name = "rocky_plateau",
+		node_top = "sn_biomes:desert_gravel",
+		depth_top = 1,
+		node_filler = "sn_biomes:desert_gravel",
+		depth_filler = 1,
+		node_stone = "default:desert_stone",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = 40,
+		y_min = 32,
+		heat_point = 89,
+		humidity_point = 17,
 	})
 
 	-- Sandstone desert
@@ -485,7 +555,7 @@ function default.register_biomes(upper_limit)
 		heat_point = 89,
 		humidity_point = 42,
 	})
-
+	
 	-- Rainforest
 
 	minetest.register_biome({
@@ -662,27 +732,6 @@ function default.register_mgv6_decorations()
 			decoration = "default:grass_"..length,
 		})
 	end
-
-	-- Dry shrubs
-
-	minetest.register_decoration({
-		name = "default:dry_shrub",
-		deco_type = "simple",
-		place_on = {"default:desert_sand", "default:dirt_with_snow"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0,
-			scale = 0.035,
-			spread = {x = 100, y = 100, z = 100},
-			seed = 329,
-			octaves = 3,
-			persist = 0.6
-		},
-		y_max = 30,
-		y_min = 1,
-		decoration = "default:dry_shrub",
-		param2 = 4,
-	})
 end
 
 
@@ -1020,7 +1069,7 @@ function default.register_decorations()
 	minetest.register_decoration({
 		name = "default:large_cactus",
 		deco_type = "schematic",
-		place_on = {"default:desert_sand"},
+		place_on = {"default:desert_sand","sn_biomes:desert_gravel"},
 		sidelen = 16,
 		noise_params = {
 			offset = -0.0003,
@@ -1030,7 +1079,7 @@ function default.register_decorations()
 			octaves = 3,
 			persist = 0.6
 		},
-		biomes = {"desert"},
+		biomes = {"desert","rocky_plateau","rocky_desert"},
 		y_max = 31000,
 		y_min = 4,
 		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/large_cactus.mts",
@@ -1043,7 +1092,7 @@ function default.register_decorations()
 	minetest.register_decoration({
 		name = "default:cactus",
 		deco_type = "simple",
-		place_on = {"default:desert_sand"},
+		place_on = {"default:desert_sand","sn_biomes:desert_gravel"},
 		sidelen = 16,
 		noise_params = {
 			offset = -0.0003,
@@ -1053,7 +1102,7 @@ function default.register_decorations()
 			octaves = 3,
 			persist = 0.6
 		},
-		biomes = {"desert"},
+		biomes = {"desert","rocky_plateau","rocky_desert"},
 		y_max = 31000,
 		y_min = 4,
 		decoration = "default:cactus",
@@ -1088,11 +1137,11 @@ function default.register_decorations()
 		name = "default:bush",
 		deco_type = "schematic",
 		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
+		sidelen = 68,
 		noise_params = {
 			offset = -0.004,
 			scale = 0.01,
-			spread = {x = 100, y = 100, z = 100},
+			spread = {x = 150, y = 150, z = 150},
 			seed = 137,
 			octaves = 3,
 			persist = 0.7,
@@ -1207,14 +1256,14 @@ function default.register_decorations()
 		y_min = 1,
 		decoration = "default:junglegrass",
 	})
-
-	-- Dry shrub
+	
+	-- Dry shrubs
 
 	minetest.register_decoration({
 		name = "default:dry_shrub",
 		deco_type = "simple",
 		place_on = {"default:desert_sand",
-			"default:sand", "default:silver_sand"},
+			"default:sand", "default:silver_sand", "sn_biomes:desert_gravel"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0,
@@ -1224,13 +1273,13 @@ function default.register_decorations()
 			octaves = 3,
 			persist = 0.6
 		},
-		biomes = {"desert", "sandstone_desert", "cold_desert"},
+		biomes = {"desert", "sandstone_desert", "cold_desert", "rocky_desert", "rocky_plateau"},
 		y_max = 31000,
 		y_min = 2,
 		decoration = "default:dry_shrub",
 		param2 = 4,
 	})
-
+	
 	-- Marram grass
 
 	minetest.register_decoration({
