@@ -43,6 +43,21 @@ minetest.register_alias("mapgen_stair_sandstone_block", "stairs:stair_sandstone_
 -- Blocks
 --
 
+-- Crumbly
+
+minetest.register_node("sn_biomes:dirt_with_autumn_grass", {
+	description = "Dirt with Autumn Grass",
+	tiles = {"sn_autumn_grass.png",
+		"default_dirt.png",
+		{name = "default_dirt.png^default_grass_side.png",
+			tileable_vertical = false}},
+	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name = "default_grass_footstep", gain = 0.4},
+	}),
+})
+
 minetest.register_node("sn_biomes:dirt_with_dry_grass", {
 	description = "Dirt with Dry Grass",
 	tiles = {"sn_dry_grass.png",
@@ -61,6 +76,78 @@ minetest.register_node("sn_biomes:desert_gravel", {
 	tiles = {"sn_desert_gravel.png"},
 	groups = {crumbly = 2, falling_node = 1},
 	sounds = default.node_sound_gravel_defaults(),
+})
+
+-- Autumn Leaves
+
+minetest.register_node("sn_biomes:leavesr", {
+	description = "Red Leaves",
+	drawtype = "allfaces_optional",
+	waving = 1,
+	tiles = {"sn_leavesr.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, not_in_inventory = 1},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:sapling"}, rarity = 20},
+			{items = {"default:leaves"}}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+	after_place_node = default.after_place_leaves,
+})
+
+minetest.register_node("sn_biomes:leaveso", {
+	description = "Orange Leaves",
+	drawtype = "allfaces_optional",
+	waving = 1,
+	tiles = {"sn_leaveso.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, not_in_inventory = 1},
+	drop = "default:leaves",
+	sounds = default.node_sound_leaves_defaults(),
+	after_place_node = default.after_place_leaves,
+})
+
+minetest.register_node("sn_biomes:leavesb", {
+	description = "Brown Leaves",
+	drawtype = "allfaces_optional",
+	waving = 1,
+	tiles = {"sn_leavesb.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, not_in_inventory = 1},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:sapling"}, rarity = 20},
+			{items = {"default:leaves"}}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+	after_place_node = default.after_place_leaves,
+})
+
+minetest.register_node("sn_biomes:leavesy", {
+	description = "Yellow Leaves",
+	drawtype = "allfaces_optional",
+	waving = 1,
+	tiles = {"sn_leavesy.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, not_in_inventory = 1},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:aspen_sapling"}, rarity = 20},
+			{items = {"default:aspen_leaves"}}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+	after_place_node = default.after_place_leaves,
 })
 
 --
@@ -305,6 +392,36 @@ function default.register_biomes(upper_limit)
 		heat_point = 45,
 		humidity_point = 70,
 	})
+	
+	-- Autumn forest
+
+	minetest.register_biome({
+		name = "autumn_forest",
+		node_top = "sn_biomes:dirt_with_autumn_grass",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = upper_limit,
+		y_min = 10,
+		heat_point = 28,
+		humidity_point = 65,
+	})
+
+	minetest.register_biome({
+		name = "autumn_forest_shore",
+		node_top = "default:dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = 0,
+		y_min = -1,
+		heat_point = 58,
+		humidity_point = 65,
+	})
 
 	-- Deciduous forest
 
@@ -361,8 +478,8 @@ function default.register_biomes(upper_limit)
 		depth_filler = 1,
 		node_riverbed = "default:gravel",
 		depth_riverbed = 2,
-		y_max = 500,
-		y_min = 30,
+		y_max = 30000,
+		y_min = 45,
 		heat_point = 3,
 		humidity_point = 60,
 	})
@@ -1063,7 +1180,89 @@ function default.register_decorations()
 		spawn_by = "default:dirt_with_grass",
 		num_spawn_by = 8,
 	})
-
+	
+	-- Autumn Trees
+	
+	minetest.register_decoration({
+		name = "default:treer",
+		deco_type = "schematic",
+		place_on = {"sn_biomes:dirt_with_autumn_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.02,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"autumn_forest"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/treer.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		name = "default:treeo",
+		deco_type = "schematic",
+		place_on = {"sn_biomes:dirt_with_autumn_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.02,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"autumn_forest"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/treeo.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		name = "default:treeb",
+		deco_type = "schematic",
+		place_on = {"sn_biomes:dirt_with_autumn_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.01,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"autumn_forest"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/treeb.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		name = "default:treey",
+		deco_type = "schematic",
+		place_on = {"sn_biomes:dirt_with_autumn_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"autumn_forest"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/treey.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
 	-- Large cactus
 
 	minetest.register_decoration({
