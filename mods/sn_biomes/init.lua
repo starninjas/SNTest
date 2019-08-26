@@ -1189,7 +1189,7 @@ function default.register_decorations()
 		place_on = {"sn_biomes:dirt_with_autumn_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.02,
+			offset = 0.01,
 			scale = -0.015,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
@@ -1209,7 +1209,7 @@ function default.register_decorations()
 		place_on = {"sn_biomes:dirt_with_autumn_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.02,
+			offset = 0.01,
 			scale = -0.015,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
