@@ -468,6 +468,37 @@ function default.register_biomes(upper_limit)
 		humidity_point = 68,
 	})
 	
+	-- Grove
+	
+	minetest.register_biome({
+		name = "grove",
+		node_top = "default:dirt_with_grass",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = 75,
+		y_min = 1,
+		heat_point = 29,
+		humidity_point = 65,
+	})
+	
+	minetest.register_biome({
+		name = "grove_shore",
+		node_top = "default:dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_max = 0,
+		y_min = -1,
+		heat_point = 19,
+		humidity_point = 65,
+	})
+	
+	
 	-- Extreme Hills
 	
 	minetest.register_biome({
@@ -1260,6 +1291,48 @@ function default.register_decorations()
 		y_max = 31000,
 		y_min = 1,
 		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/treey.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	-- Pear Trees
+	
+	minetest.register_decoration({
+		name = "default:pear_pine",
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.008,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"grove"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/pear_pine.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		name = "default:pear_aspen",
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.005,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"grove"},
+		y_max = 31000,
+		y_min = 1,
+		schematic = minetest.get_modpath("sn_biomes") .. "/schematics/pear_aspen.mts",
 		flags = "place_center_x, place_center_z",
 	})
 	
