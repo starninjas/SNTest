@@ -644,8 +644,6 @@ dofile(farming.path.."/grass.lua")
 dofile(farming.path.."/utensils.lua")
 
 -- default crops
-dofile(farming.path.."/crops/wheat.lua")
-dofile(farming.path.."/crops/cotton.lua")
 
 
 -- helper function
